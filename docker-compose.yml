@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+
+  nginx:
+    image: nginx:latest
+    ports:
+    - 127.0.0.1:80:80
+    volumes:
+    - ./api:/var/www/html
+    - ./docker/configs/nginx:/etc/nginx/conf.d
+#    - ./docker/logs/nginx:/var/log/nginx
+
+  php-fpm:
+    build:
+      context: docker/php-fpm
+    volumes:
+      - ./api:/var/www/html
+
